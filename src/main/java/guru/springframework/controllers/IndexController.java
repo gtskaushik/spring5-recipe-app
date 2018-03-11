@@ -1,34 +1,23 @@
 
 package guru.springframework.controllers;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import guru.springframework.domain.Category;
-import guru.springframework.domain.UnitOfMeasure;
-import guru.springframework.repositories.CategoryRepository;
-import guru.springframework.repositories.UnitOfMeasureRepository;
+import guru.springframework.services.RecipeService;
 import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
 public class IndexController {
-	
-	private CategoryRepository categoryRepository;
-	private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    @RequestMapping({"", "/", "/index"})
-    public String getIndexPage(){
-    	System.out.println("Came Here1");
+	RecipeService recipeService;
 
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+	@RequestMapping({ "", "/", "/index" })
+	public String getIndexPage(Model model) {
 
-        System.out.println("Cat Id is: " + categoryOptional.get().getId());
-        System.out.println("UOM ID is: " + unitOfMeasureOptional.get().getId());
-
-        return "index";
-    }
+		model.addAttribute("recipes", recipeService.getRecipes());
+		return "index";
+	}
 }

@@ -11,8 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
+@ToString(exclude = {"recipe"})
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
 

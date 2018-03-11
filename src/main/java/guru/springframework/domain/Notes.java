@@ -8,8 +8,12 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
+@ToString(exclude = {"recipe"})
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
 	@Id
