@@ -18,9 +18,11 @@ import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class GrilledChickenTacos implements ApplicationListener<ContextRefreshedEvent> {
 
 	CategoryRepository categoryRepository;
@@ -29,6 +31,8 @@ public class GrilledChickenTacos implements ApplicationListener<ContextRefreshed
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
+		
+		log.info("Going to initialize Grilled Chicken Tacos");
 
 		Recipe recipe = new Recipe();
 
@@ -78,6 +82,7 @@ public class GrilledChickenTacos implements ApplicationListener<ContextRefreshed
 		recipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
 
 		recipeRepository.save(recipe);
+		log.info("Initialized Grilled Chicken Tacos");
 
 	}
 
